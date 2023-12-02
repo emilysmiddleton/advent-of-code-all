@@ -1,6 +1,5 @@
 package esm.aoc.structures.register;
 
-import java.util.List;
 import java.util.Map;
 
 public class Registers {
@@ -15,7 +14,7 @@ public class Registers {
         return registers.get(register).getValue();
     }
     public void apply(final RegistersOperation operation) {
-        registers.get(operation.getRegister()).applyAction(operation.getOperation());
+        registers.get(operation.register()).applyAction(operation.operation());
     }
 
 }

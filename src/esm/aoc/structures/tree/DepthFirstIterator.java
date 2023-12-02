@@ -23,7 +23,7 @@ public class DepthFirstIterator<State> implements Iterator<TreeNode<State>> {
             throw new IllegalStateException("hasNext false");
         }
         final TreeNode<State> currentNode = stack.pop();
-        Utils.reverseConsume(currentNode.getChildren(), stack::push);
+        Utils.reverseConsume(currentNode.children(), stack::push);
         return currentNode;
     }
 }

@@ -77,55 +77,55 @@ public class GameState {
 
     private Wizard bossAttacks() {
         return new Wizard(
-                wizard.getMana(),
-                wizard.getHitPoints() + wizard.getArmor() - boss.getStrength(),
-                wizard.getShieldEffect(),
-                wizard.getPoisonEffect(),
-                wizard.getRechargeEffect()
+                wizard.mana(),
+                wizard.hitPoints() + wizard.getArmor() - boss.strength(),
+                wizard.shieldEffect(),
+                wizard.poisonEffect(),
+                wizard.rechargeEffect()
         );
     }
 
     public Wizard playsActionOnWizard(final Action action) {
         return new Wizard(
-                wizard.getMana() - action.getCost(),
-                wizard.getHitPoints() + (action == Action.DRAIN ? 2 : 0),
-                action == Action.SHIELD ? 6 : wizard.getShieldEffect(),
-                action == Action.POISON ? 6 : wizard.getPoisonEffect(),
-                action == Action.RECHARGE ? 5 : wizard.getRechargeEffect()
+                wizard.mana() - action.getCost(),
+                wizard.hitPoints() + (action == Action.DRAIN ? 2 : 0),
+                action == Action.SHIELD ? 6 : wizard.shieldEffect(),
+                action == Action.POISON ? 6 : wizard.poisonEffect(),
+                action == Action.RECHARGE ? 5 : wizard.rechargeEffect()
         );
     }
 
     public Boss playsActionOnBoss(final Action action) {
         return new Boss(
-                boss.getHitPoints() - action.getImmediateDamage(),
-                boss.getStrength()
+                boss.hitPoints() - action.getImmediateDamage(),
+                boss.strength()
         );
     }
 
     public Wizard playEffectsOnWizard() {
         return new Wizard(
-                wizard.getMana() + (wizard.getRechargeEffect() > 0 ? 101 : 0),
-                wizard.getHitPoints(),
-                Math.max(0, wizard.getShieldEffect() - 1),
-                Math.max(0, wizard.getPoisonEffect() - 1),
-                Math.max(0, wizard.getRechargeEffect() - 1)
+                wizard.mana() + (wizard.rechargeEffect() > 0 ? 101 : 0),
+                wizard.hitPoints(),
+                Math.max(0, wizard.shieldEffect() - 1),
+                Math.max(0, wizard.poisonEffect() - 1),
+                Math.max(0, wizard.rechargeEffect() - 1)
         );
     }
 
     public Wizard decrementHitPoints() {
         return new Wizard(
-                wizard.getMana(),
-                wizard.getHitPoints() - 1,
-                wizard.getShieldEffect(),
-                wizard.getPoisonEffect(),
-                wizard.getRechargeEffect()
+                wizard.mana(),
+                wizard.hitPoints() - 1,
+                wizard.shieldEffect(),
+                wizard.poisonEffect(),
+                wizard.rechargeEffect()
         );
     }
 
     public Boss playEffectsOnBoss() {
         return new Boss(
-                boss.getHitPoints() - (wizard.getPoisonEffect() > 0 ? 3 : 0),
-                boss.getStrength()
+                boss.hitPoints() - (wizard.poisonEffect() > 0 ? 3 : 0),
+                boss.strength()
         );
     }
 

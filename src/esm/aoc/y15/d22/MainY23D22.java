@@ -19,7 +19,7 @@ public class MainY23D22 {
         final DepthFirstIterator<GameState> dfs = new DepthFirstIterator<>(rootNode);
         int min = Integer.MAX_VALUE;
         while (dfs.hasNext()) {
-            final GameState next = dfs.next().getState();
+            final GameState next = dfs.next().state();
             if (next.isBossDead()) {
                 min = Math.min(min, next.getManaTotal());
             }

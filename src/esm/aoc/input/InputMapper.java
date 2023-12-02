@@ -2,7 +2,6 @@ package esm.aoc.input;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 

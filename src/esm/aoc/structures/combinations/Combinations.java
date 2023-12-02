@@ -1,8 +1,6 @@
 package esm.aoc.structures.combinations;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,7 +22,7 @@ public class Combinations {
                     newGroup.add(thing);
                     result.add(newGroup);
                 }
-            };
+            }
         }
         return result;
     }

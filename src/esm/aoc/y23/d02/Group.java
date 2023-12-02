@@ -16,8 +16,8 @@ public class Group {
 
     public int getMaxForColour(final String colour) {
         return cubes.stream()
-                    .filter(cube -> cube.getColour().equals(colour))
-                    .mapToInt(Cube::getNumber)
+                    .filter(cube -> cube.colour().equals(colour))
+                    .mapToInt(Cube::number)
                     .max()
                     .orElse(0);
     }

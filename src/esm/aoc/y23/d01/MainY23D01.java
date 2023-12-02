@@ -13,8 +13,6 @@ public class MainY23D01 {
     public static void main(String[] args) {
         System.out.println("Part 1: " + solve(PART_ONE_NUMBER_PATTERN));
         System.out.println("Part 2: " + solve(PART_TWO_NUMBER_PATTERN));
-
-        final var codes = InputReader.readStrings("2023/test.txt");
     }
 
     private static int solve(final String numberPattern) {

@@ -1,6 +1,5 @@
 package esm.aoc.y15.d23;
 
-import esm.aoc.structures.collections.Circle;
 import esm.aoc.structures.register.Registers;
 import java.util.List;
 
@@ -23,10 +22,10 @@ public class Program {
 
     private void act() {
         final var instruction = instructions.get(pointer);
-        if (instruction.getRegistersOperation() != null) {
-            registers.apply(instruction.getRegistersOperation());
+        if (instruction.registersOperation() != null) {
+            registers.apply(instruction.registersOperation());
         }
-        pointer = pointer + instruction.getOffsetOperation().apply(registers);
+        pointer = pointer + instruction.offsetOperation().apply(registers);
     }
 
 }

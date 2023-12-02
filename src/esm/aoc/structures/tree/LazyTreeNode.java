@@ -3,6 +3,7 @@ package esm.aoc.structures.tree;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 
 public class LazyTreeNode<State> implements TreeNode<State> {
 
@@ -16,18 +17,19 @@ public class LazyTreeNode<State> implements TreeNode<State> {
     }
 
     @Override
-    public List<TreeNode<State>> getChildren() {
+    @NotNull
+    public List<TreeNode<State>> children() {
         if (children == null) {
             children = childFunction.apply(state)
                                     .stream()
-                                    .map(s -> new LazyTreeNode<State>(childFunction, s))
+                                    .map(s -> new LazyTreeNode<>(childFunction, s))
                                     .collect(Collectors.toList());
         }
         return children;
     }
 
     @Override
-    public State getState() {
+    public State state() {
         return state;
     }
 }

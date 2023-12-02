@@ -1,17 +1,14 @@
 package esm.aoc.structures.tree;
 
-import esm.aoc.utils.Utils;
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Iterator;
 import java.util.Queue;
-import java.util.Stack;
 
-public class BreadthFirstIterator implements Iterator<TreeNode> {
+public class BreadthFirstIterator<T> implements Iterator<TreeNode<T>> {
 
-    private final Queue<TreeNode> queue = new ArrayDeque<>();
+    private final Queue<TreeNode<T>> queue = new ArrayDeque<>();
 
-    public BreadthFirstIterator(final TreeNode root) {
+    public BreadthFirstIterator(final TreeNode<T> root) {
         queue.add(root);
     }
 
@@ -21,12 +18,12 @@ public class BreadthFirstIterator implements Iterator<TreeNode> {
     }
 
     @Override
-    public TreeNode next() {
+    public TreeNode<T> next() {
         if (queue.isEmpty()) {
             throw new IllegalStateException("hasNext false");
         }
-        final TreeNode currentNode = queue.poll();
-        queue.addAll(currentNode.getChildren());
+        final TreeNode<T> currentNode = queue.poll();
+        queue.addAll(currentNode.children());
         return currentNode;
     }
 }

@@ -1,21 +1,6 @@
 package esm.aoc.y23.d02;
 
-public class Cube {
-    private final int number;
-    private final String colour;
-
-    public Cube(final int number, final String colour) {
-        this.number = number;
-        this.colour = colour;
-    }
-
-    public String getColour() {
-        return colour;
-    }
-
-    public int getNumber() {
-        return number;
-    }
+public record Cube(int number, String colour) {
 
     @Override
     public String toString() {
@@ -33,5 +18,4 @@ public class Cube {
             default -> throw new IllegalStateException("Unexpected value: " + colour);
         };
     }
-
 }
