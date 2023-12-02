@@ -20,8 +20,16 @@ public class Utils {
         return values.stream().reduce(Integer::sum).orElse(0);
     }
 
+    public static long sumLong(final Collection<Long> values) {
+        return values.stream().reduce(Long::sum).orElse(0L);
+    }
+
     public static int product(final Collection<Integer> values) {
         return values.stream().reduce((a, b) -> a * b).orElse(0);
+    }
+
+    public static long productLong(final Collection<Long> values) {
+        return values.stream().reduce((a, b) -> a * b).orElse(0L);
     }
 
     public static <T> void reverseConsume(final List<T> things, final Consumer<T> consumer) {

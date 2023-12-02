@@ -22,6 +22,10 @@ public class InputMapper {
         return lines.stream().map(Integer::parseInt).collect(Collectors.toList());
     }
 
+    public static List<Long> getLongList(final List<String> lines) {
+        return lines.stream().map(Long::parseLong).collect(Collectors.toList());
+    }
+
     public static List<List<Integer>> getIntegerGroup(final List<List<String>> groups) {
         return groups.stream().map(InputMapper::getIntegerList).collect(Collectors.toList());
     }

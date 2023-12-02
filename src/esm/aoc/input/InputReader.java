@@ -20,6 +20,10 @@ public class InputReader {
         return InputMapper.getIntegerList(FileReader.readStrings(resourceName));
     }
 
+    public static List<Long> readLongs(final String resourceName) {
+        return InputMapper.getLongList(FileReader.readStrings(resourceName));
+    }
+
     public static List<List<String>> readSeparated(final String resourceName, final String separator) {
         return FileReader.readStrings(resourceName)
                          .stream().map(line -> InputMapper.getSeparatedStrings(line, separator))
