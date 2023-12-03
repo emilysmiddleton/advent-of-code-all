@@ -8,6 +8,10 @@ public record Coordinate(int x, int y) {
             case DOWN -> new Coordinate(x, y - 1);
             case LEFT -> new Coordinate(x - 1, y);
             case RIGHT -> new Coordinate(x + 1, y);
+            case UP_LEFT -> new Coordinate(x - 1, y + 1);
+            case UP_RIGHT -> new Coordinate(x + 1, y + 1);
+            case DOWN_LEFT -> new Coordinate(x - 1, y - 1);
+            case DOWN_RIGHT -> new Coordinate(x + 1, y - 1);
         };
     }
 
