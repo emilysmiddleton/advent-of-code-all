@@ -1,7 +1,5 @@
 package esm.aoc.structures.collections;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
 public record Range(long start, long end) {
@@ -27,12 +25,8 @@ public record Range(long start, long end) {
         return end >= other.start;
     }
 
-    public List<Long> getPointsInRange() {
-        List<Long> points = new ArrayList<>();
-        for (long i = start; i <= end; i++) {
-            points.add(i);
-        }
-        return points;
+    public Range getOverlap(final Range other) {
+        return new Range(Math.max(start, other.start), Math.min(end, other.end));
     }
 
     public long midPoint() {
