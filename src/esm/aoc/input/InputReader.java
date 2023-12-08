@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class InputReader {
 
+
     public static List<List<String>> readPattern(final String resourceName, final Pattern pattern) {
         return FileReader.readStrings(resourceName).stream().map(s -> InputMapper.matchPattern(s, pattern)).collect(Collectors.toList());
     }

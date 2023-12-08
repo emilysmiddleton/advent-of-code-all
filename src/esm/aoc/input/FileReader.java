@@ -20,11 +20,11 @@ public class FileReader {
 
     public static List<List<String>> readGroups(final String resourceName) {
         final List<List<String>> groups = new ArrayList<>();
-        final List<String> current = new ArrayList<>();
+        List<String> current = new ArrayList<>();
         for (final var line : readStrings(resourceName)) {
             if (line.isEmpty()) {
                 groups.add(current);
-                current.clear();
+                current = new ArrayList<>();
             } else {
                 current.add(line);
             }
