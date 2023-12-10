@@ -1,7 +1,12 @@
 package esm.aoc.input;
 
+import esm.aoc.structures.grid.Coordinate;
+import esm.aoc.structures.grid.Grid;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -32,5 +37,21 @@ public class InputMapper {
 
     public static List<String> getSeparatedStrings(final String string, final String separator) {
         return List.of(string.split(separator));
+    }
+
+    public static <T> Grid<T> readGrid(final List<String> lines, final Function<String, T> function) {
+        final Map<Coordinate, T> map = new LinkedHashMap<>();
+        for (int y = 0; y < lines.size(); y++) {
+            addToMap(map, lines.size() - y - 1, lines.get(y), function);
+        }
+        return new Grid<>(map);
+    }
+
+    private static <T> void addToMap(final Map<Coordinate, T> map, final int y, final String line, final Function<String, T> function) {
+        final var bits = line.split("");
+        for (int x = 0; x < bits.length; x++) {
+            final var bit = bits[x];
+            map.put(new Coordinate(x, y), function.apply(bit));
+        }
     }
 }
