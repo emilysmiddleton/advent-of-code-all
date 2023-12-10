@@ -1,6 +1,10 @@
 package esm.aoc.structures.combinations;
 
+import esm.aoc.structures.collections.Pair;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,6 +29,17 @@ public class Combinations {
             }
         }
         return result;
+    }
+
+    public static <T> List<Pair<T, T>> getPairs(final List<T> input) {
+        if (input.size() < 2) {
+            return Collections.emptyList();
+        }
+        final List<Pair<T, T>> pairs = new ArrayList<>();
+        for (int i = 0; i < input.size() - 1; i++) {
+            pairs.add(new Pair<>(input.get(i), input.get(i + 1)));
+        }
+        return pairs;
     }
 
 }
