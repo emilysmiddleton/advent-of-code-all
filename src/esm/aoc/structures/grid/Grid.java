@@ -3,6 +3,7 @@ package esm.aoc.structures.grid;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import static esm.aoc.structures.grid.Direction.DOWN;
 import static esm.aoc.structures.grid.Direction.LEFT;
 import static esm.aoc.structures.grid.Direction.RIGHT;
@@ -10,10 +11,10 @@ import static esm.aoc.structures.grid.Direction.UP;
 
 public class Grid<T> {
 
-    private final int minX;
-    private final int minY;
-    private final int maxX;
-    private final int maxY;
+    private int minX;
+    private int minY;
+    private int maxX;
+    private int maxY;
 
     private final Map<Coordinate, T> map;
 
@@ -25,23 +26,16 @@ public class Grid<T> {
         maxY = map.keySet().stream().mapToInt(Coordinate::y).max().orElseThrow();
     }
 
+    public Map<Coordinate, T> getMap() {
+        return map;
+    }
+
     public T get(final Coordinate coordinate) {
         return map.get(coordinate);
     }
 
-    public T getOrDefault(final Coordinate coordinate, final T defaultValue) {
-        if (map.containsKey(coordinate)) {
-            return get(coordinate);
-        }
-        return defaultValue;
-    }
-
     public T get(final int x, final int y) {
         return get(new Coordinate(x, y));
-    }
-
-    public T getOrDefault(final int x, final int y, final T defaultValue) {
-        return getOrDefault(new Coordinate(x, y), defaultValue);
     }
 
     public Map<Coordinate, T> getAdjacent(final Coordinate coordinate, final boolean includeDiagonal) {
@@ -73,4 +67,43 @@ public class Grid<T> {
     public int getMaxY() {
         return maxY;
     }
+
+    public void put(final Coordinate coordinate, final T value) {
+        map.put(coordinate, value);
+        minX = Math.min(minX, coordinate.x());
+        maxX = Math.max(maxX, coordinate.x());
+        minY = Math.min(minY, coordinate.y());
+        maxY = Math.max(maxY, coordinate.y());
+    }
+    @Override
+    public String toString() {
+        final var builder = new StringBuilder();
+        for (int y= maxY; y >= minY; y--) {
+            for (int x = minX; x <= maxX; x++) {
+                final var value = get(x, y);
+                builder.append(value == null ? " " : value);
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    public T get(final Coordinate coordinate, final Direction direction) {
+        return get(coordinate.move(direction));
+    }
+
+    public void fillGaps(final T value) {
+        for (int i = minX; i <= maxX; i++) {
+            for (int j = minX; j <= maxY; j++) {
+                if (!map.containsKey(new Coordinate(i, j))) {
+                    map.put(new Coordinate(i, j), value);
+                }
+            }
+        }
+    }
+
+    public List<Coordinate> filterByValue(Predicate<T> predicate) {
+        return map.entrySet().stream().filter(e -> predicate.test(e.getValue())).map(Map.Entry::getKey).toList();
+    }
+
 }
