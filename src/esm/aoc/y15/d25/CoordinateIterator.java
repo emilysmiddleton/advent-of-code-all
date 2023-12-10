@@ -29,7 +29,7 @@ public class CoordinateIterator implements Iterator<Coordinate> {
             next = nextNext;
             return toReturn;
         }
-        // Otherwise go to start of next x
+        // Otherwise go end start of next x
         next = new Coordinate(nextStart, 0);
         nextStart++;
         return toReturn;
