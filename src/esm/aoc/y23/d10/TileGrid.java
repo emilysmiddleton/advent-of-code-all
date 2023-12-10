@@ -8,21 +8,16 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class TileGrid {
+public record TileGrid(Grid<Tile> grid) {
 
-    private final Grid<Tile> grid;
-    private final Coordinate start;
-
-    public TileGrid(final Grid<Tile> grid) {
-        this.grid = grid;
-        this.start = grid.filterByValue(tile -> "S".equals(tile.type())).get(0);
-        grid.put(start, getValueOfStart());
+    public Coordinate getStart() {
+        return grid.filterByValue(tile -> "S".equals(tile.type())).get(0);
     }
 
     public Set<Coordinate> findLoop() {
-        var current = start;
         final Set<Coordinate> loop = new LinkedHashSet<>();
-        loop.add(start);
+        var current = getStart();
+        loop.add(current);
         boolean complete = false;
         while (!complete) {
             final var connections = getConnections(current, grid.get(current));
@@ -37,17 +32,6 @@ public class TileGrid {
             }
         }
         return loop;
-    }
-
-    private Tile getValueOfStart() {
-        for (final var possible : Set.of("-", "|", "J", "L", "7", "F")) {
-            final var possibleTile = Tile.parseTile(possible);
-            final var connections = getConnections(start, possibleTile);
-            if (connections.size() == 2) {
-                return possibleTile;
-            }
-        }
-        throw new IllegalStateException();
     }
 
     private List<Coordinate> getConnections(final Coordinate coordinate, final Tile tile) {
