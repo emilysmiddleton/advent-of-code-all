@@ -1,18 +1,18 @@
 package esm.aoc.y16.d11;
 
 import esm.aoc.input.InputReader;
-import java.util.Arrays;
-import java.util.Collections;
+import esm.aoc.structures.collections.Multimap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MainY16D11 {
 
     public static void main(String[] args) {
         final var strings = InputReader.readSeparated("2016/day11.txt", ", ", MainY16D11::sanitise);
-        for (final var s : strings) {
-            System.out.println(s);
+        final Multimap<Integer, List<Item>> items = new Multimap<>();
+        for (int i = 0; i < strings.size(); i++) {
+            items.add(i + 1, strings.get(i).stream().filter(s -> !s.isEmpty()).map(Item::parse).toList());
         }
+        System.out.println(items);
     }
 
     private static String sanitise(final String line) {
@@ -29,13 +29,4 @@ public class MainY16D11 {
                    .toUpperCase();
     }
 
-    private static List<Thing> parse(final String line) {
-        if (line.isEmpty()) {
-            return Collections.emptyList();
-        }
-        return Arrays.stream(line.split(", ")).map(s -> {
-            final var split = s.split(" ");
-            return new Thing(Type.valueOf(split[1]), Material.valueOf(split[0]));
-        }).collect(Collectors.toList());
-    }
 }
