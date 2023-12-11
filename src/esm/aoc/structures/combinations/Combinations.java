@@ -2,6 +2,7 @@ package esm.aoc.structures.combinations;
 
 import esm.aoc.structures.collections.Pair;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -38,6 +39,16 @@ public class Combinations {
         final List<Pair<T, T>> pairs = new ArrayList<>();
         for (int i = 0; i < input.size() - 1; i++) {
             pairs.add(new Pair<>(input.get(i), input.get(i + 1)));
+        }
+        return pairs;
+    }
+
+    public static <T> Set<Pair<T, T>> getCombinations(final Collection<T> input) {
+        final LinkedHashSet<Pair<T, T>> pairs = new LinkedHashSet<>();
+        for (final var t1 : input) {
+            for (final var t2 : input) {
+                pairs.add(new Pair<>(t1, t2));
+            }
         }
         return pairs;
     }

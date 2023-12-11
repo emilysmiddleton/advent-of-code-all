@@ -3,6 +3,7 @@ package esm.aoc.structures.grid;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 import static esm.aoc.structures.grid.Direction.DOWN;
 import static esm.aoc.structures.grid.Direction.LEFT;
@@ -11,19 +12,19 @@ import static esm.aoc.structures.grid.Direction.UP;
 
 public class Grid<T> {
 
-    private int minX;
-    private int minY;
-    private int maxX;
-    private int maxY;
+    private long minX;
+    private long minY;
+    private long maxX;
+    private long maxY;
 
     private final Map<Coordinate, T> map;
 
     public Grid(final Map<Coordinate, T> map) {
         this.map = map;
-        minX = map.keySet().stream().mapToInt(Coordinate::x).min().orElseThrow();
-        maxX = map.keySet().stream().mapToInt(Coordinate::x).max().orElseThrow();
-        minY = map.keySet().stream().mapToInt(Coordinate::y).min().orElseThrow();
-        maxY = map.keySet().stream().mapToInt(Coordinate::y).max().orElseThrow();
+        minX = map.keySet().stream().mapToLong(Coordinate::x).min().orElseThrow();
+        maxX = map.keySet().stream().mapToLong(Coordinate::x).max().orElseThrow();
+        minY = map.keySet().stream().mapToLong(Coordinate::y).min().orElseThrow();
+        maxY = map.keySet().stream().mapToLong(Coordinate::y).max().orElseThrow();
     }
 
     public Map<Coordinate, T> getMap() {
@@ -34,7 +35,7 @@ public class Grid<T> {
         return map.get(coordinate);
     }
 
-    public T get(final int x, final int y) {
+    public T get(final long x, final long y) {
         return get(new Coordinate(x, y));
     }
 
@@ -52,19 +53,19 @@ public class Grid<T> {
         return adjacent;
     }
 
-    public int getMinX() {
+    public long getMinX() {
         return minX;
     }
 
-    public int getMinY() {
+    public long getMinY() {
         return minY;
     }
 
-    public int getMaxX() {
+    public long getMaxX() {
         return maxX;
     }
 
-    public int getMaxY() {
+    public long getMaxY() {
         return maxY;
     }
 
@@ -78,8 +79,8 @@ public class Grid<T> {
     @Override
     public String toString() {
         final var builder = new StringBuilder();
-        for (int y= maxY; y >= minY; y--) {
-            for (int x = minX; x <= maxX; x++) {
+        for (long y = maxY; y >= minY; y--) {
+            for (long x = minX; x <= maxX; x++) {
                 final var value = get(x, y);
                 builder.append(value == null ? " " : value);
             }
@@ -93,8 +94,8 @@ public class Grid<T> {
     }
 
     public void fillGaps(final T value) {
-        for (int i = minX; i <= maxX; i++) {
-            for (int j = minX; j <= maxY; j++) {
+        for (long i = minX; i <= maxX; i++) {
+            for (long j = minX; j <= maxY; j++) {
                 if (!map.containsKey(new Coordinate(i, j))) {
                     map.put(new Coordinate(i, j), value);
                 }
@@ -106,4 +107,19 @@ public class Grid<T> {
         return map.entrySet().stream().filter(e -> predicate.test(e.getValue())).map(Map.Entry::getKey).toList();
     }
 
+    public List<Coordinate> filterByKey(Predicate<Coordinate> predicate) {
+        return map.keySet().stream().filter(predicate).toList();
+    }
+
+    public List<Coordinate> getColumn(final long x) {
+        return filterByKey(c -> c.x() == x);
+    }
+
+    public List<Coordinate> getRow(final long y) {
+        return filterByKey(c -> c.y() == y);
+    }
+
+    public Set<Coordinate> getCoordinates() {
+        return map.keySet();
+    }
 }

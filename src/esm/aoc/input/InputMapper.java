@@ -51,7 +51,10 @@ public class InputMapper {
         final var bits = line.split("");
         for (int x = 0; x < bits.length; x++) {
             final var bit = bits[x];
-            map.put(new Coordinate(x, y), function.apply(bit));
+            final var transformed = function.apply(bit);
+            if (transformed != null) {
+                map.put(new Coordinate(x, y), transformed);
+            }
         }
     }
 }

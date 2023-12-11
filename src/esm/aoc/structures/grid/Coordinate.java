@@ -1,6 +1,6 @@
 package esm.aoc.structures.grid;
 
-public record Coordinate(int x, int y) {
+public record Coordinate(long x, long y) {
 
     public Coordinate move(final Direction direction) {
         return switch (direction) {
@@ -18,6 +18,11 @@ public record Coordinate(int x, int y) {
     @Override
     public String toString() {
         return String.format("(%d,%d)", x, y);
+    }
+
+    public long distance(final Coordinate other) {
+        return Math.max(y, other.y) - Math.min(y, other.y) +
+               Math.max(x, other.x) - Math.min(x, other.x);
     }
 
 }

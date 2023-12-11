@@ -43,9 +43,9 @@ public class MainY23D03 {
 
     private static List<EnginePart> getEngineParts(final Grid<String> grid) {
         final List<EnginePart> parts = new ArrayList<>();
-        for (int y = grid.getMinY(); y <= grid.getMaxY(); y++) {
+        for (long y = grid.getMinY(); y <= grid.getMaxY(); y++) {
             EnginePart enginePart = new EnginePart();
-            for (int x = grid.getMinX(); x <= grid.getMaxX(); x++) {
+            for (long x = grid.getMinX(); x <= grid.getMaxX(); x++) {
                 String part = grid.get(x, y);
                 if (part.matches("\\d")) {
                     enginePart.append(part, grid.getAdjacent(new Coordinate(x, y), true));

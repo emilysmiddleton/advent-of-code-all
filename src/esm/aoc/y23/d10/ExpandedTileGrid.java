@@ -12,8 +12,8 @@ public record ExpandedTileGrid(Grid<String> grid) {
         final Map<Coordinate, String> map = new LinkedHashMap<>();
         for (final var coordinate : tileGrid.findLoop()) {
             final var tile = grid.get(coordinate);
-            int newX = coordinate.x() * 3;
-            int newY = coordinate.y() * 3;
+            long newX = coordinate.x() * 3;
+            long newY = coordinate.y() * 3;
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     map.put(new Coordinate(newX + i, newY + j), tile.tile().get(i, j));

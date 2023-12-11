@@ -2,10 +2,13 @@ package esm.aoc.y23.d09;
 
 import esm.aoc.input.InputMapper;
 import esm.aoc.input.InputReader;
+import esm.aoc.structures.collections.Pair;
 import esm.aoc.structures.combinations.Combinations;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MainY23D09 {
 

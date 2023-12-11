@@ -8,7 +8,7 @@ import static esm.aoc.structures.grid.Direction.UP;
 public class CoordinateIterator implements Iterator<Coordinate> {
 
     private Coordinate next;
-    private int nextStart;
+    private long nextStart;
 
     public CoordinateIterator(final Coordinate current) {
         this.next = current;
