@@ -115,8 +115,16 @@ public class Grid<T> {
         return filterByKey(c -> c.x() == x);
     }
 
+    public List<T> getColumnValues(final long x) {
+        return getColumn(x).stream().map(this::get).toList();
+    }
+
     public List<Coordinate> getRow(final long y) {
         return filterByKey(c -> c.y() == y);
+    }
+
+    public List<T> getRowValues(final long y) {
+        return getRow(y).stream().map(this::get).toList();
     }
 
     public Set<Coordinate> getCoordinates() {

@@ -31,4 +31,18 @@ class CombinationsTest {
                 Set.of("b", "c", "d")
         ));
     }
+
+    @Test
+    void factorial() {
+        assertEquals(1, Combinations.factorial(1));
+        assertEquals(2, Combinations.factorial(2));
+        assertEquals(6, Combinations.factorial(3));
+        assertEquals(24, Combinations.factorial(4));
+        assertEquals(120, Combinations.factorial(5));
+    }
+
+    @Test
+    void testNumberOfCombinations() {
+        assertEquals(252, Combinations.numberOfCombinations(10, 5));
+    }
 }

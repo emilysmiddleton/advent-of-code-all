@@ -11,6 +11,19 @@ import java.util.stream.Collectors;
 
 public class Combinations {
 
+    public static long numberOfCombinations(final long n, final long k) {
+        //  n! / [ (n-k)! k! ]
+        return factorial(n) / ((factorial(n - k) * factorial(k)));
+    }
+
+    public static long factorial(final long n) {
+        long result = 1;
+        for (long i = 1; i <= n; i++) {
+            result = result * i;
+        }
+        return result;
+    }
+
     public static <T> Set<Set<T>> chooseN(final Set<T> things, int n) {
         if (n == 1) {
             return things.stream().map(Set::of).collect(Collectors.toSet());

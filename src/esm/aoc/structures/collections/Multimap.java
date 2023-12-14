@@ -18,4 +18,8 @@ public class Multimap<T, V> extends LinkedHashMap<T, List<V>> {
         }
         get(key).add(value);
     }
+
+    public int getSize(final T key) {
+        return get(key).size();
+    }
 }

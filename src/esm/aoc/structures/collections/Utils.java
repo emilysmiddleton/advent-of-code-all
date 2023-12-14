@@ -21,4 +21,16 @@ public class Utils {
         return result;
     }
 
+    public static <T> List<T> replace(final List<T> list, final T replacement, final int index) {
+        final var copy = new ArrayList<>(list);
+        copy.set(index, replacement);
+        return copy;
+    }
+
+    public static <T> List<T> removeFirst(final List<T> list) {
+        final var copy = new ArrayList<>(list);
+        copy.remove(0);
+        return copy;
+    }
+
 }

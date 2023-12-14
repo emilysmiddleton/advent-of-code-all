@@ -1,5 +1,6 @@
 package esm.aoc.input;
 
+import esm.aoc.structures.grid.CharGrid;
 import esm.aoc.structures.grid.Coordinate;
 import esm.aoc.structures.grid.Grid;
 import java.util.ArrayList;
@@ -37,6 +38,11 @@ public class InputMapper {
 
     public static List<String> getSeparatedStrings(final String string, final String separator) {
         return List.of(string.split(separator));
+    }
+
+    public static CharGrid readCharGrid(final List<String> lines) {
+        final Grid<String> grid = readGrid(lines, s -> s);
+        return new CharGrid(grid.getMap());
     }
 
     public static <T> Grid<T> readGrid(final List<String> lines, final Function<String, T> function) {
