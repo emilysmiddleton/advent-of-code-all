@@ -1,5 +1,6 @@
 package esm.aoc.input;
 
+import esm.aoc.structures.grid.CharGrid;
 import esm.aoc.structures.grid.Grid;
 import java.util.List;
 import java.util.function.Function;
@@ -52,6 +53,10 @@ public class InputReader {
 
     public static <T> Grid<T> readGrid(final String resourceName, final Function<String, T> function) {
         return InputMapper.readGrid(InputReader.readStrings(resourceName), function);
+    }
+
+    public static CharGrid readCharGrid(final String resourceName) {
+        return InputMapper.readCharGrid(InputReader.readStrings(resourceName));
     }
 
 }

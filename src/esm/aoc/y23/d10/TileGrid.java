@@ -11,7 +11,7 @@ import java.util.Set;
 public record TileGrid(Grid<Tile> grid) {
 
     public Coordinate getStart() {
-        return grid.filterByValue(tile -> "S".equals(tile.type())).get(0);
+        return grid.filterByValue(tile -> "S".equals(tile.type())).iterator().next();
     }
 
     public Set<Coordinate> findLoop() {

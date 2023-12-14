@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import static esm.aoc.structures.grid.Direction.DOWN;
 import static esm.aoc.structures.grid.Direction.LEFT;
 import static esm.aoc.structures.grid.Direction.RIGHT;
@@ -103,8 +104,8 @@ public class Grid<T> {
         }
     }
 
-    public List<Coordinate> filterByValue(Predicate<T> predicate) {
-        return map.entrySet().stream().filter(e -> predicate.test(e.getValue())).map(Map.Entry::getKey).toList();
+    public Set<Coordinate> filterByValue(Predicate<T> predicate) {
+        return map.entrySet().stream().filter(e -> predicate.test(e.getValue())).map(Map.Entry::getKey).collect(Collectors.toSet());
     }
 
     public List<Coordinate> filterByKey(Predicate<Coordinate> predicate) {
