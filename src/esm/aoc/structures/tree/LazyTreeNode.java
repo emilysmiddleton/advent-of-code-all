@@ -3,7 +3,6 @@ package esm.aoc.structures.tree;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import org.jetbrains.annotations.NotNull;
 
 public class LazyTreeNode<State> implements TreeNode<State> {
 
@@ -17,7 +16,6 @@ public class LazyTreeNode<State> implements TreeNode<State> {
     }
 
     @Override
-    @NotNull
     public List<TreeNode<State>> children() {
         if (children == null) {
             children = childFunction.apply(state)

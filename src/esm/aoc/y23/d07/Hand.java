@@ -5,12 +5,11 @@ import esm.aoc.structures.collections.Utils;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public record Hand(List<Integer> rawCards, Multimap<Integer, Integer> groupedCards, long bid) implements Comparable<Hand> {
 
     @Override
-    public int compareTo(@NotNull final Hand other) {
+    public int compareTo( final Hand other) {
         final var rank1 = getRank();
         final var rank2 = other.getRank();
         if (rank1 != rank2) {

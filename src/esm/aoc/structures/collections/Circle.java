@@ -3,14 +3,13 @@ package esm.aoc.structures.collections;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public class Circle<T> extends ArrayList<T> {
 
     public Circle() {
     }
 
-    public Circle(@NotNull final Collection<? extends T> c) {
+    public Circle(final Collection<? extends T> c) {
         super(c);
     }
 
