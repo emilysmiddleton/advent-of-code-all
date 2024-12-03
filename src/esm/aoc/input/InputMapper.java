@@ -24,6 +24,15 @@ public class InputMapper {
         return result;
     }
 
+    public static List<String> parseMatches(final String line, final Pattern pattern) {
+        final var matcher = pattern.matcher(line);
+        final var result = new ArrayList<String>();
+        while (matcher.find()) {
+            result.add(matcher.group());
+        }
+        return result;
+    }
+
     public static List<Integer> getIntegerList(final List<String> lines) {
         return lines.stream().map(Integer::parseInt).collect(Collectors.toList());
     }
