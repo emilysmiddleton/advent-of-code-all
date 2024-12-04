@@ -9,7 +9,6 @@ public class MainY24D04 {
 
     public static void main(String[] args) {
         final var grid = InputReader.readCharGrid("2024/day04.txt");
-        System.out.println(grid);
         System.out.println(STR."Part 1: \{solve1(grid)}");
         System.out.println(STR."Part 2: \{solve2(grid)}");
     }
