@@ -30,4 +30,8 @@ public class Utils {
         reversed.forEach(consumer);
     }
 
+    public static <T> T getMiddle(final List<T> input) {
+        return input.get(input.size() / 2);
+    }
+
 }
