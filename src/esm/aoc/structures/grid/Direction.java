@@ -32,4 +32,17 @@ public enum Direction {
         };
     }
 
+    public Direction clockwise() {
+        return switch (this) {
+            case UP -> UP_RIGHT;
+            case UP_RIGHT -> RIGHT;
+            case RIGHT -> DOWN_RIGHT;
+            case DOWN_RIGHT -> DOWN;
+            case DOWN -> DOWN_LEFT;
+            case DOWN_LEFT -> LEFT;
+            case LEFT -> UP_LEFT;
+            case UP_LEFT -> UP;
+        };
+    }
+
 }
