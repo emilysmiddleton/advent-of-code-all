@@ -29,7 +29,7 @@ public class Utils {
 
     public static <T> List<T> removeFirst(final List<T> list) {
         final var copy = new ArrayList<>(list);
-        copy.remove(0);
+        copy.removeFirst();
         return copy;
     }
 
