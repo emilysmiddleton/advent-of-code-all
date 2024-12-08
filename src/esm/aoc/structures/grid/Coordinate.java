@@ -29,4 +29,17 @@ public record Coordinate(long x, long y) {
                Math.max(x, other.x) - Math.min(x, other.x);
     }
 
+    public Coordinate getDiff(final Coordinate other) {
+        return new Coordinate(other.x - x, other.y - y);
+    }
+
+    public Coordinate add(final Coordinate other) {
+        return new Coordinate(x + other.x, y + other.y);
+    }
+
+
+    public Coordinate subtract(final Coordinate other) {
+        return new Coordinate(x - other.x, y - other.y);
+    }
+
 }

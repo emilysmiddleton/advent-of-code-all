@@ -56,12 +56,12 @@ public class GuardPath implements Iterator<Pair<Coordinate, Direction>> {
     }
 
     private boolean inGrid() {
-        return grid.getCoordinates().contains(path.getLast().left());
+        return grid.contains(path.getLast().left());
     }
 
     public Set<Coordinate> getSpacesInPath() {
         return getPath().stream().map(Pair::left)
-                .filter(c -> grid.getCoordinates().contains(c))
+                .filter(grid::contains)
                 .filter(c -> !path.getFirst().left().equals(c))
                 .collect(Collectors.toSet());
     }

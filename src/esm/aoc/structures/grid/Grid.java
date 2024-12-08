@@ -131,4 +131,9 @@ public class Grid<T> {
     public Set<Coordinate> getCoordinates() {
         return map.keySet();
     }
+
+    public boolean contains(final Coordinate coordinate) {
+        return map.containsKey(coordinate);
+    }
+
 }
