@@ -22,8 +22,6 @@ public class MainY24D14 {
     private static final int MIDDLE_Y = (HEIGHT) / 2;
     private static final int MIDDLE_X = (WIDTH) / 2;
 
-    // 230461440
-    // 238081536
     public static void main(String[] args) throws InterruptedException {
         final var robots = InputReader.readPattern("2024/day14.txt", PATTERN).stream().map(MainY24D14::parse).collect(Collectors.toSet());
         System.out.println(STR."Part 1: \{solve1(robots)}");
