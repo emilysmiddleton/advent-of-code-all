@@ -20,6 +20,10 @@ public class Utils {
         return values.stream().reduce(Long::sum).orElse(0L);
     }
 
+    public static long product(final Collection<Integer> values) {
+        return values.stream().reduce((a, b) -> a * b).orElse(0);
+    }
+
     public static long productLong(final Collection<Long> values) {
         return values.stream().reduce((a, b) -> a * b).orElse(0L);
     }

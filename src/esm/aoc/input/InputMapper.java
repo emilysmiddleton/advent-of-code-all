@@ -20,6 +20,8 @@ public class InputMapper {
             for (int i = 1; i <= matcher.groupCount(); i++) {
                 result.add(matcher.group(i));
             }
+        } else {
+            throw new IllegalArgumentException(line + " does not match " + pattern);
         }
         return result;
     }
