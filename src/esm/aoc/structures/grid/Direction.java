@@ -45,6 +45,19 @@ public enum Direction {
         };
     }
 
+    public Direction anticlockwise() {
+        return switch (this) {
+            case UP -> UP_LEFT;
+            case UP_LEFT -> LEFT;
+            case LEFT -> DOWN_LEFT;
+            case DOWN_LEFT -> DOWN;
+            case DOWN -> DOWN_RIGHT;
+            case DOWN_RIGHT -> RIGHT;
+            case RIGHT -> UP_RIGHT;
+            case UP_RIGHT -> UP;
+        };
+    }
+
     public static Direction parse(final String arrow) {
         return switch (arrow) {
             case ">" -> RIGHT;
