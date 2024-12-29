@@ -12,17 +12,20 @@ public class GridState {
 
     private final CharGrid grid;
     private final Coordinate position;
+    private final Predicate<Coordinate> end;
     private final Predicate<GridState> canMove;
     private final List<Coordinate> path;
 
     public GridState(
         final CharGrid grid,
         final Coordinate position,
+        final Predicate<Coordinate> end,
         final Predicate<GridState> canMove,
         final List<Coordinate> path
     ) {
         this.grid = grid;
         this.position = position;
+        this.end = end;
         this.canMove = canMove;
         this.path = path;
     }
@@ -33,10 +36,6 @@ public class GridState {
 
     public CharGrid getGrid() {
         return grid;
-    }
-
-    public Predicate<GridState> getCanMove() {
-        return canMove;
     }
 
     public List<Coordinate> getPath() {
@@ -53,7 +52,15 @@ public class GridState {
 
     public GridState getNextState(final Direction direction) {
         final var next = position.move(direction);
-        return new GridState(grid, next, canMove, Utils.addAndCopy(path, next));
+        return new GridState(grid, next, end, canMove, Utils.addAndCopy(path, next));
     }
 
+    public boolean isEnd() {
+        return end.test(position);
+    }
+
+    @Override
+    public String toString() {
+        return position.toString();
+    }
 }
