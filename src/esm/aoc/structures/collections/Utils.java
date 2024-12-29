@@ -33,4 +33,10 @@ public class Utils {
         return copy;
     }
 
+    public static <T> List<T> addAndCopy(final List<T> list, final T thing) {
+        final var copy = new ArrayList<>(list);
+        copy.add(thing);
+        return copy;
+    }
+
 }
