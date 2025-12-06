@@ -59,9 +59,9 @@ public enum Direction {
     }
 
     public static Direction parse(final String arrow) {
-        return switch (arrow) {
-            case ">" -> RIGHT;
-            case "<" -> LEFT;
+        return switch (arrow.toLowerCase()) {
+            case ">", "r" -> RIGHT;
+            case "<", "l" -> LEFT;
             case "^" -> UP;
             case "v" -> DOWN;
             default -> throw new IllegalArgumentException(arrow);
