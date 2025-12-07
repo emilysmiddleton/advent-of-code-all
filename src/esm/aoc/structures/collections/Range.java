@@ -55,4 +55,9 @@ public record Range(long start, long end) {
                 new Range(toTest + 1, end).findFirstMatchingPoint(min, matching);
     }
 
+    public static Range parse(final String input) {
+        final String[] parts = input.split("-");
+        return new Range(Long.parseLong(parts[0]), Long.parseLong(parts[1]));
+    }
+
 }
