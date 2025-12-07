@@ -109,7 +109,7 @@ public class Grid<T> {
     }
 
     public List<Coordinate> filterByKey(Predicate<Coordinate> predicate) {
-        return map.keySet().stream().filter(predicate).toList();
+        return map.keySet().stream().filter(predicate).sorted(Coordinate.X_THEN_Y).toList();
     }
 
     public List<Coordinate> getColumn(final long x) {
@@ -118,6 +118,14 @@ public class Grid<T> {
 
     public List<T> getColumnValues(final long x) {
         return getColumn(x).stream().map(this::get).toList();
+    }
+
+    public List<List<T>> getColumnValues() {
+        final List<List<T>> values = new java.util.ArrayList<>();
+        for (int x = (int) minX; x <= maxX; x++) {
+            values.add(getColumnValues(x));
+        }
+        return values;
     }
 
     public List<Coordinate> getRow(final long y) {
