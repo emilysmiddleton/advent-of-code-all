@@ -15,7 +15,6 @@ public class MainY25D01 {
                 .stream().map(MainY25D01::convertToNumber).toList();
         final Dial dial = new Dial();
         instructions.forEach(dial::turn);
-        System.out.println(-1 % 100);
         System.out.println(STR."Part 1: \{dial.stopsAtZeroCounter}");
         System.out.println(STR."Part 1: \{dial.pointsAtZeroCounter}");
     }
