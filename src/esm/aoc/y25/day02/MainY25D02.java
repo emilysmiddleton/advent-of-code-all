@@ -1,12 +1,12 @@
 package esm.aoc.y25.day02;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
 import esm.aoc.input.InputReader;
 import esm.aoc.structures.collections.Range;
-import esm.aoc.utils.StringUtils;
 
 public class MainY25D02 {
 
@@ -60,8 +60,16 @@ public class MainY25D02 {
         if (input.length() % length != 0) {
             return false;
         }
-        final List<String> splitByLength = StringUtils.splitByLength(input, length);
+        final List<String> splitByLength = splitByLength(input, length);
         return new HashSet<>(splitByLength).size() == 1;
+    }
+
+    private static List<String> splitByLength(final String input, final int length) {
+        final List<String> result = new ArrayList<>();
+        for (int i = 0; i < input.length(); i += length) {
+            result.add(input.substring(i, Math.min(i + length, input.length())));
+        }
+        return result;
     }
 
 
