@@ -55,6 +55,10 @@ public class InputReader {
         return InputMapper.readGrid(InputReader.readStrings(resourceName), function);
     }
 
+    public static <T> List<T> readLines(final String resourceName, final Function<String, T> function) {
+        return InputReader.readStrings(resourceName).stream().map(function).toList();
+    }
+
     public static CharGrid readCharGrid(final String resourceName) {
         return InputMapper.readCharGrid(InputReader.readStrings(resourceName));
     }
